@@ -1,0 +1,170 @@
+"""1.1"""
+class CallReport:
+    def report_Processing(self):
+        print("формування репорту")
+
+class ReportSave:
+    def savereport(self):
+        print("зберігання репорту")
+
+call = CallReport()
+save = ReportSave()
+call.report_Processing()
+save.savereport()
+"""1.2"""
+class subscriber:
+    def subscribe(self):
+        print("зберігання даних абонента")
+
+class SMSsender:
+    def send(self):
+        print("надіслання SMS")
+
+class balance:
+    def check(self):
+        print("перевірка балансу")
+
+person = subscriber()
+sms = SMSsender()
+card = balance()
+person.subscribe()
+sms.send()
+card.check()
+"""2.1"""
+class Tariff:
+    def price(self, minutes):
+        return 0
+
+class Basic(Tariff):
+    def price(self, minutes):
+        return minutes * 1
+
+class New(Tariff):
+    def price(self, minutes):
+        return minutes * 1.2
+"""2.2"""
+class Tariff:
+    def price(self, minutes):
+        return 0
+
+class VoiceTariff(Tariff):
+    def voice(self):
+        print("підтримка голосових повідомлень")
+    def price(self, minutes):
+        return minutes * 0.5
+
+class DataTariff(Tariff):
+    def data(self):
+        print("підтримка контролю трафіку")
+    def price(self, minutes):
+        return minutes * 0.8
+
+class RoamingTariff(Tariff):
+    def price(self,minutes):
+        return minutes * 1
+"""3.1"""
+class NetworkConnection:
+    def connect(self):
+        print("Підключення до мережі")
+
+class WiFiConnection(NetworkConnection):
+    def connect(self):
+        print("WiFi підключено")
+
+class LTEConnection(NetworkConnection):
+    def connect(self):
+        print("LTE підключено")
+"""3.2"""
+class NetworkConnection:
+    def connect(self):
+        pass
+
+class HighSpeedConnection(NetworkConnection):
+    def transfer_data(self, data: str):
+        print(f"Швидка передача: {data}")
+
+class SatelliteConnection(NetworkConnection):
+    def connect(self):
+        print("Пошук супутника на орбіті... Сигнал знайдено.")
+    def transfer_via_satellite(self, data: str):
+        print(f"Надсилання пакету через космос: {data}")
+"""4.1"""
+class Telecom_device:
+    def telecom(self):
+        pass
+
+class calling:
+    def make_call(self):
+        print("дзвінок")
+
+class sending:
+    def send_SMS(self):
+        print("надіслання смс")
+
+class conecting:
+    def connect_to_network(self):
+        print("підключення")
+"""4.2"""
+from abc import ABC, abstractmethod
+class IDataTransmitter(ABC):
+    @abstractmethod
+    def send_data(self, data: bytes):
+        pass
+
+class IDeviceManagement(ABC):
+    @abstractmethod
+    def update_firmware(self, version: str):
+        pass
+
+    @abstractmethod
+    def reboot(self):
+        pass
+"""5.1"""
+class Logger:
+    def log(self, message): ...
+
+class FileLogger(Logger):
+    def log(self, message):
+        print("Файл:", message)
+
+class NetworkMonitor:
+    def __init__(self, logger: Logger):
+        self.logger = logger
+
+    def check(self):
+        self.logger.log("Мережа працює")
+"""5.2"""
+from abc import ABC, abstractmethod
+
+class Logger(ABC):
+    @abstractmethod
+    def log(self, message):
+        pass
+
+class FileLogger(Logger):
+    def log(self, message):
+        print("Файл:", message)
+
+class ServerLogger(Logger):
+    def log(self, message):
+        print("Сервер:", message)
+
+class ConsoleLogger(Logger):
+    def log(self, message):
+        print("Консоль:", message)
+
+class NetworkMonitor:
+    def __init__(self, logger: Logger):
+        self.logger = logger
+
+    def check(self):
+        self.logger.log("Мережа працює")
+
+monitor1 = NetworkMonitor(FileLogger())
+monitor1.check()
+
+monitor2 = NetworkMonitor(ServerLogger())
+monitor2.check()
+
+monitor3 = NetworkMonitor(ConsoleLogger())
+monitor3.check()
